@@ -1,0 +1,4 @@
+zx
+==
+
+An Alfred workflow
