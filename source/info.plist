@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.twitter.swaydeng.alfred.wf.zx</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>5C97FEC7-2C56-4EDB-BEF0-7A3B0D757A14</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>13F3B40F-02B8-4A32-B73E-69D36F7D7936</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>swaydeng</string>
+	<key>description</key>
+	<string>快速添加文字后面括号里的拼音</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>真相</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>13F3B40F-02B8-4A32-B73E-69D36F7D7936</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>zx</string>
+				<key>runningsubtext</key>
+				<string>正在生成中...</string>
+				<key>script</key>
+				<string># -*- coding: utf-8 -*-
+
+'''
+zx v0.1
+
+Author: Sway Deng
+Twitter: @swaydeng
+'''
+
+import re
+
+originStr = u'{query}'
+newStr = originStr.strip()
+
+wordList = re.split("\s+", newStr)
+totalLen = len(wordList)
+
+cnWordList = wordList[0]
+cnLen = len(cnWordList)
+mixList = []
+
+for i in range(cnLen):
+	mixList.append(cnWordList[i])
+	if ( (i+1) &lt; totalLen ):
+		mixList.append("(" + wordList[i+1] + ")")
+    
+result = "".join(mixList).encode('utf-8').translate(None, "\\")
+
+print '&lt;?xml version="1.0"?&gt;&lt;items&gt;&lt;item uid="desktop" arg="' + result + '" valid="yes"&gt;&lt;title&gt;' + result + '&lt;/title&gt;&lt;subtitle&gt;&amp;#x56de;&amp;#x8f66;&amp;#x5373;&amp;#x53ef;&amp;#x8f93;&amp;#x5165;&amp;#xff0c;&amp;#x5e76;&amp;#x5c06;&amp;#x7ed3;&amp;#x679c;&amp;#x590d;&amp;#x5236;&amp;#x5230;&amp;#x526a;&amp;#x5207;&amp;#x677f;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;&lt;/items&gt;'</string>
+				<key>subtext</key>
+				<string>例：输入"恭喜发财 kuai gei hong bao"生成"恭(kuai)喜(gei)发(hong)财(bao)"</string>
+				<key>title</key>
+				<string>真相 - 快速添加文字后面括号里的拼音</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>5C97FEC7-2C56-4EDB-BEF0-7A3B0D757A14</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>真相 - 一个帮助你快速添加文字后面括号里的拼音的 workflow</string>
+	<key>uidata</key>
+	<dict>
+		<key>13F3B40F-02B8-4A32-B73E-69D36F7D7936</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>5C97FEC7-2C56-4EDB-BEF0-7A3B0D757A14</key>
+		<dict>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://twitter.com/swaydeng</string>
+</dict>
+</plist>
